@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">Investing for Noobs</string>
+    <string name="app_name">Compound Interest Calculator</string>
+    <string name="rate_hint">interest rate (yearly)</string>
+    <string name="reg_add_hint">0.00</string>
+    <string name="percent">%</string>
+    <string name="dollar">$</string>
+    <string name="years">years</string>
+    <string name="welcome">This app helps you calculate compound interest!\n\nYou might be surprised how a little investment and a lot of time can make you rich!</string>
+    <string name="calculate">Calculate</string>
+    <string name="initial_investment">Initial investment</string>
+    <string name="regular_addition">Regular addition</string>
+    <string name="frequency">Frequency</string>
+    <string name="weekly">Weekly</string>
+    <string name="monthly">Monthly</string>
+    <string name="yearly">Yearly</string>
+    <string name="years_to_grow">Years to grow</string>
+    <string name=""></string>
+    <string name=""></string>
+    <string name=""></string>
+
 </resources>
