@@ -7,4 +7,21 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--My colors-->
+    <color name="burgir_green">  #3CB64B </color>
+    <color name="burgir_orange"> #F0A335 </color>
+    <color name="burgir_red">    #CE484B </color>
+    <color name="burgir_white">  #FFFFFF </color>
+    <color name="burgir_black">  #231F20 </color>
+
+    <!-- Imported from Material Design -->
+    <color name="primaryColor">#3cb64b</color>
+    <color name="primaryLightColor">#74e97a</color>
+    <color name="primaryDarkColor">#00851c</color>
+    <color name="secondaryColor">#f0a335</color>
+    <color name="secondaryLightColor">#ffd466</color>
+    <color name="secondaryDarkColor">#b97400</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#000000</color>
 </resources>

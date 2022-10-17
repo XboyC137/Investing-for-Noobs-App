@@ -6,6 +6,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.text.NumberFormat
 import kotlin.math.pow
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // collect all relevant view objects
-        val show_info_btn = findViewById<Button>(R.id.i)
+        val show_info_btn = findViewById<FloatingActionButton>(R.id.i)
         val info_textview = findViewById<TextView>(R.id.info_textview)
         val init_invest_edittext = findViewById<EditText>(R.id.init_invest)
         val reg_add_edittext = findViewById<EditText>(R.id.reg_add)
@@ -37,8 +39,11 @@ class MainActivity : AppCompatActivity() {
 
 
                 val result = init_inv * (1 + interest_rate).pow(term_in_years)
+                val formattedPrin = NumberFormat.getCurrencyInstance().format(800)
+                val formattedInterests = NumberFormat.getCurrencyInstance().format(result - 800)
+                val formattedTotal = NumberFormat.getCurrencyInstance().format(result)
 
-                result_textview.text = result.toString()
+                result_textview.text = getString(R.string.result, formattedPrin, formattedInterests, formattedTotal)
             }
             catch (ex: NumberFormatException) {
                 //One or more EditText are empty
