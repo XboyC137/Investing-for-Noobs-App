@@ -1,6 +1,7 @@
 package com.burgir.investingfornoobs
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -25,32 +26,48 @@ class MainActivity : AppCompatActivity() {
         val calculate_btn = findViewById<Button>(R.id.calculate)
         val result_textview = findViewById<TextView>(R.id.result)
 
+        fun calculate(init_inv:Double, interest_rate:Double, term_in_years:Int) {
+            // get results
+            val result = init_inv * (1 + interest_rate).pow(term_in_years)
+            val formattedPrin = NumberFormat.getCurrencyInstance().format(800)
+            val formattedInterests = NumberFormat.getCurrencyInstance().format(result - 800)
+            val formattedTotal = NumberFormat.getCurrencyInstance().format(result)
+
+            // display results
+            result_textview.text = getString(R.string.result, formattedPrin, formattedInterests, formattedTotal)
+        }
+
         // CALCULATE Button
         calculate_btn.setOnClickListener() {
-            // empty edittext crashes app
-            try {
-                // get current values from View objects -> EditText
-                val init_inv = init_invest_edittext.text.toString().toDouble()
-                val interest_rate = (interest_rate_edittext.text.toString().toDouble() / 100 )
-                val reg_add = reg_add_edittext.text.toString().toDouble()
-                val term_in_years = years_to_grow_edittext.text.toString().toInt()
+            // get current values from View objects -> EditText
+            // initializing
+            var init_inv = 0.0
+            var interest_rate = 0.0
+            var reg_add = 0.0
+            var term_in_years = 0
 
-                //
-
-
-                val result = init_inv * (1 + interest_rate).pow(term_in_years)
-                val formattedPrin = NumberFormat.getCurrencyInstance().format(800)
-                val formattedInterests = NumberFormat.getCurrencyInstance().format(result - 800)
-                val formattedTotal = NumberFormat.getCurrencyInstance().format(result)
-
-                result_textview.text = getString(R.string.result, formattedPrin, formattedInterests, formattedTotal)
+            init_inv = try {
+                init_invest_edittext.text.toString().toDouble()
+            } catch (ex: NumberFormatException) {
+                0.0
             }
-            catch (ex: NumberFormatException) {
-                //One or more EditText are empty
-                // Popup a toast to let them know
-                Toast.makeText(this, R.string.toast_empty_field, Toast.LENGTH_SHORT).show()
+            interest_rate = try {
+                (interest_rate_edittext.text.toString().toDouble() / 100 )
+            } catch (ex: NumberFormatException) {
+                0.0
+            }
+            reg_add = try {
+                reg_add_edittext.text.toString().toDouble()
+            } catch (ex: NumberFormatException) {
+                0.0
+            }
+            term_in_years = try {
+                years_to_grow_edittext.text.toString().toInt()
+            } catch (ex: NumberFormatException) {
+                0
             }
 
+            calculate(init_inv, interest_rate, term_in_years)
         }
 
         // Show Info Button

@@ -43,7 +43,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/years_to_grow"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/reg_add_freq" />
 
     <EditText
         android:id="@+id/reg_add"
@@ -142,7 +142,7 @@
         app:layout_constraintTop_toBottomOf="@+id/info_textview" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/reg_add_freq"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:checkedButton="@id/yearly_radio"
