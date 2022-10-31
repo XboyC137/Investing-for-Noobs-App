@@ -1,15 +1,18 @@
 package com.burgir.investingfornoobs
 
+import android.os.Build.VERSION_CODES.P
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.NumberFormat
 import kotlin.math.pow
+
+const val TAG = "MainActivity.kt"
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,61 +28,115 @@ class MainActivity : AppCompatActivity() {
         val years_to_grow_edittext = findViewById<EditText>(R.id.years_to_grow)
         val calculate_btn = findViewById<Button>(R.id.calculate)
         val result_textview = findViewById<TextView>(R.id.result)
+        val reg_add_radio_group  = findViewById<RadioGroup>(R.id.reg_add_freq)
 
-        fun calculate(init_inv:Double, interest_rate:Double, term_in_years:Int) {
-            // get results
-            val result = init_inv * (1 + interest_rate).pow(term_in_years)
-            val formattedPrin = NumberFormat.getCurrencyInstance().format(800)
-            val formattedInterests = NumberFormat.getCurrencyInstance().format(result - 800)
+
+        fun calculateLoop(p:Double, r:Double, t:Int, pmt:Double) {
+            /*
+            / p   : Initial investment
+            / r   : Interest rate (yearly)
+            / t   : term in years
+            / pmt : Regular contribution in capital
+            */
+
+            var result = p
+
+            for (i in 1..t) {
+                result = result * (1+r) + pmt
+            }
+
+            Log.w(TAG, "result is $result")
+            val investedPrin = p + (pmt * t)
+            Log.w(TAG,  "investedPrin is $investedPrin")
+            val formattedPrin = NumberFormat.getCurrencyInstance().format(investedPrin)
+            val formattedInterests = NumberFormat.getCurrencyInstance().format(result - investedPrin)
             val formattedTotal = NumberFormat.getCurrencyInstance().format(result)
 
             // display results
             result_textview.text = getString(R.string.result, formattedPrin, formattedInterests, formattedTotal)
         }
 
+        fun calculate(p:Double, r:Double, t:Int, pmt:Double) {
+            /*
+            / p   : Initial investment
+            / r   : Interest rate (yearly)
+            / t   : term in years
+            / pmt : Regular contribution in capital
+            */
+            Log.i(TAG, "p is : $p")
+            Log.i(TAG, "r is : $r")
+            Log.i(TAG, "t is : $t")
+            Log.i(TAG, "pmt is : $pmt")
+
+            val result = if (pmt != 0.0 && r != 0.0) {
+                p * (1 + r).pow(t) + ((pmt * (1 + r).pow(t) - 1) / r)
+            }
+            else if (pmt != 0.0) {
+                pmt * t + p
+            }
+            else /* pmt == 0 */ {
+                p * (1 + r).pow(t)
+            }
+
+            Log.w(TAG, "result is $result")
+            val investedPrin = p + (pmt * t)
+            Log.w(TAG,  "investedPrin is $investedPrin")
+            val formattedPrin = NumberFormat.getCurrencyInstance().format(investedPrin)
+            val formattedInterests = NumberFormat.getCurrencyInstance().format(result - investedPrin)
+            val formattedTotal = NumberFormat.getCurrencyInstance().format(result)
+
+            // display results
+            result_textview.text = getString(R.string.result, formattedPrin, formattedInterests, formattedTotal)
+        }
+
+
         // CALCULATE Button
         calculate_btn.setOnClickListener() {
             // get current values from View objects -> EditText
-            // initializing
-            var init_inv = 0.0
-            var interest_rate = 0.0
-            var reg_add = 0.0
-            var term_in_years = 0
 
-            init_inv = try {
+            val init_inv = try {
                 init_invest_edittext.text.toString().toDouble()
             } catch (ex: NumberFormatException) {
                 0.0
             }
-            interest_rate = try {
+            val interest_rate = try {
                 (interest_rate_edittext.text.toString().toDouble() / 100 )
             } catch (ex: NumberFormatException) {
                 0.0
             }
-            reg_add = try {
+            var reg_add = try {
                 reg_add_edittext.text.toString().toDouble()
             } catch (ex: NumberFormatException) {
                 0.0
             }
-            term_in_years = try {
+            val term_in_years = try {
                 years_to_grow_edittext.text.toString().toInt()
             } catch (ex: NumberFormatException) {
                 0
             }
 
-            calculate(init_inv, interest_rate, term_in_years)
+            // now convert reg_add to the correct amount according to selected radio button
+            reg_add = when(reg_add_radio_group.checkedRadioButtonId) {
+                R.id.monthly_radio -> reg_add * 12
+                R.id.weekly_radio -> reg_add * 52
+                else -> {reg_add}
+            }
+
+            // Log.w(TAG, "reg_add is now $reg_add")
+
+            calculateLoop(init_inv, interest_rate, term_in_years, reg_add)
         }
 
         // Show Info Button
-        var info_activated = false
+        var infoActivated = false
         show_info_btn.setOnClickListener() {
-            if (info_activated) {
+            if (infoActivated) {
                 info_textview.setText(R.string.hide_text)
-                info_activated = false
+                infoActivated = false
             }
             else {
                 info_textview.setText(R.string.welcome)
-                info_activated = true
+                infoActivated = true
             }
         }
 

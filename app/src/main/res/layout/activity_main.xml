@@ -132,14 +132,13 @@
         app:layout_constraintStart_toEndOf="@+id/interest_rate"
         app:layout_constraintTop_toTopOf="@+id/interest_rate" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/initial_investment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_textview" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/initial_investment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:id="@+id/reg_add_freq"
@@ -187,6 +186,7 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/i"
             android:src="@drawable/q_mark"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
