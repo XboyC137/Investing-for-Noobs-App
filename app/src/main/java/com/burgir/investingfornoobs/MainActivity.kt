@@ -29,7 +29,23 @@ class MainActivity : AppCompatActivity() {
         val calculate_btn = findViewById<Button>(R.id.calculate)
         val result_textview = findViewById<TextView>(R.id.result)
         val reg_add_radio_group  = findViewById<RadioGroup>(R.id.reg_add_freq)
+        val reset_btn = findViewById<Button>(R.id.reset)
 
+        fun reset() {
+            // reset selections
+            init_invest_edittext.text.clear()
+            reg_add_edittext.text.clear()
+            interest_rate_edittext.text.clear()
+            years_to_grow_edittext.text.clear()
+            reg_add_radio_group.check(R.id.yearly_radio)
+
+            // reset text
+            result_textview.text = ""
+        }
+
+        reset_btn.setOnClickListener() {
+            reset()
+        }
 
         fun calculateLoop(p:Double, r:Double, t:Int, pmt:Double) {
             /*

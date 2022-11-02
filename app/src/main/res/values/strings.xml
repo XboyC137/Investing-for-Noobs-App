@@ -19,6 +19,7 @@
     <string name="hide_text"> </string>
     <string name="toast_empty_field">Please enter a value in each field, even if it\'s zero</string>
     <string name="result">Principal invested : %s\nInterest gained : %s\nTotal : %s</string>
+    <string name="reset">Reset</string>
 
 
 </resources>
