@@ -12,6 +12,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.NumberFormat
 import kotlin.math.pow
 
+// https://stackoverflow.com/questions/70994512/how-to-fix-the-error-resource-mipmap-ic-launcher-aka-com-example-myappnamemi
+
 const val TAG = "MainActivity.kt"
 
 class MainActivity : AppCompatActivity() {
@@ -20,8 +22,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // collect all relevant view objects
-        val show_info_btn = findViewById<FloatingActionButton>(R.id.i)
-        val info_textview = findViewById<TextView>(R.id.info_textview)
         val init_invest_edittext = findViewById<EditText>(R.id.init_invest)
         val reg_add_edittext = findViewById<EditText>(R.id.reg_add)
         val interest_rate_edittext = findViewById<EditText>(R.id.interest_rate)
@@ -143,18 +143,6 @@ class MainActivity : AppCompatActivity() {
             calculateLoop(init_inv, interest_rate, term_in_years, reg_add)
         }
 
-        // Show Info Button
-        var infoActivated = false
-        show_info_btn.setOnClickListener() {
-            if (infoActivated) {
-                info_textview.setText(R.string.hide_text)
-                infoActivated = false
-            }
-            else {
-                info_textview.setText(R.string.welcome)
-                infoActivated = true
-            }
-        }
 
     }
 }

@@ -77,16 +77,6 @@
         app:layout_constraintTop_toTopOf="@+id/reg_add"
         app:layout_constraintVertical_bias="0.619" />
 
-    <TextView
-        android:id="@+id/info_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/hide_text"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/i" />
-
         <Button
             android:id="@+id/calculate"
             android:layout_width="wrap_content"
@@ -178,15 +168,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/i"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/i"
-            android:src="@drawable/q_mark"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/init_invest"
@@ -218,12 +199,6 @@
             app:layout_constraintStart_toEndOf="@+id/calculate"
             app:layout_constraintTop_toTopOf="@+id/calculate" />
 
-        <androidx.constraintlayout.widget.Barrier
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="top"
-            tools:layout_editor_absoluteX="179dp"
-            tools:layout_editor_absoluteY="419dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
