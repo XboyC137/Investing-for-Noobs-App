@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         val years_to_grow_edittext = findViewById<EditText>(R.id.years_to_grow)
         val calculate_btn = findViewById<Button>(R.id.calculate)
         val result_textview = findViewById<TextView>(R.id.result)
-        val reg_add_radio_group  = findViewById<RadioGroup>(R.id.reg_add_freq)
+        val reg_add_radio_group = findViewById<RadioGroup>(R.id.reg_add_freq)
         val reset_btn = findViewById<Button>(R.id.reset)
 
         fun reset() {
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             reset()
         }
 
-        fun calculateLoop(p:Double, r:Double, t:Int, pmt:Double) {
+        fun calculateLoop(p: Double, r: Double, t: Int, pmt: Double) {
             /*
             / p   : Initial investment
             / r   : Interest rate (yearly)
@@ -58,21 +58,23 @@ class MainActivity : AppCompatActivity() {
             var result = p
 
             for (i in 1..t) {
-                result = result * (1+r) + pmt
+                result = result * (1 + r) + pmt
             }
 
             Log.w(TAG, "result is $result")
             val investedPrin = p + (pmt * t)
-            Log.w(TAG,  "investedPrin is $investedPrin")
+            Log.w(TAG, "investedPrin is $investedPrin")
             val formattedPrin = NumberFormat.getCurrencyInstance().format(investedPrin)
-            val formattedInterests = NumberFormat.getCurrencyInstance().format(result - investedPrin)
+            val formattedInterests =
+                NumberFormat.getCurrencyInstance().format(result - investedPrin)
             val formattedTotal = NumberFormat.getCurrencyInstance().format(result)
 
             // display results
-            result_textview.text = getString(R.string.result, formattedPrin, formattedInterests, formattedTotal)
+            result_textview.text =
+                getString(R.string.result, formattedPrin, formattedInterests, formattedTotal)
         }
 
-        fun calculate(p:Double, r:Double, t:Int, pmt:Double) {
+        fun calculate(p: Double, r: Double, t: Int, pmt: Double) {
             /*
             / p   : Initial investment
             / r   : Interest rate (yearly)
@@ -86,23 +88,23 @@ class MainActivity : AppCompatActivity() {
 
             val result = if (pmt != 0.0 && r != 0.0) {
                 p * (1 + r).pow(t) + ((pmt * (1 + r).pow(t) - 1) / r)
-            }
-            else if (pmt != 0.0) {
+            } else if (pmt != 0.0) {
                 pmt * t + p
-            }
-            else /* pmt == 0 */ {
+            } else /* pmt == 0 */ {
                 p * (1 + r).pow(t)
             }
 
             Log.w(TAG, "result is $result")
             val investedPrin = p + (pmt * t)
-            Log.w(TAG,  "investedPrin is $investedPrin")
+            Log.w(TAG, "investedPrin is $investedPrin")
             val formattedPrin = NumberFormat.getCurrencyInstance().format(investedPrin)
-            val formattedInterests = NumberFormat.getCurrencyInstance().format(result - investedPrin)
+            val formattedInterests =
+                NumberFormat.getCurrencyInstance().format(result - investedPrin)
             val formattedTotal = NumberFormat.getCurrencyInstance().format(result)
 
             // display results
-            result_textview.text = getString(R.string.result, formattedPrin, formattedInterests, formattedTotal)
+            result_textview.text =
+                getString(R.string.result, formattedPrin, formattedInterests, formattedTotal)
         }
 
 
@@ -116,7 +118,7 @@ class MainActivity : AppCompatActivity() {
                 0.0
             }
             val interest_rate = try {
-                (interest_rate_edittext.text.toString().toDouble() / 100 )
+                (interest_rate_edittext.text.toString().toDouble() / 100)
             } catch (ex: NumberFormatException) {
                 0.0
             }
@@ -132,10 +134,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             // now convert reg_add to the correct amount according to selected radio button
-            reg_add = when(reg_add_radio_group.checkedRadioButtonId) {
+            reg_add = when (reg_add_radio_group.checkedRadioButtonId) {
                 R.id.monthly_radio -> reg_add * 12
                 R.id.weekly_radio -> reg_add * 52
-                else -> {reg_add}
+                else -> {
+                    reg_add
+                }
             }
 
             // Log.w(TAG, "reg_add is now $reg_add")
@@ -146,3 +150,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
+
+
+// TODO: Implement Bundle to preserve Result on light/dark mode or orientation change

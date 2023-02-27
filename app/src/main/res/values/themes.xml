@@ -6,14 +6,20 @@
         <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondary">@color/burgir_green</item>
         <item name="colorSecondaryVariant">@color/burgir_red</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <!-- Text input fields -->
+        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
+        <!-- Radio buttons -->
+        <item name="radioButtonStyle">@style/Widget.InvestingForNoobs.CompoundButton.RadioButton</item>
     </style>
-    <style name="Button.Red" parent="ThemeOverlay.AppCompat">
-        <item name="colorAccent">@color/burgir_red</item>
+
+    <style name="Button.Orange" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/burgir_orange</item>
     </style>
 </resources>
